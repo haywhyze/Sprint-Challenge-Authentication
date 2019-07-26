@@ -24,9 +24,16 @@ describe('users model', () => {
     });
   });
   describe('findById()', () => {
-    it('should get a users from the db using the provided id', async () => {
+    it('should get a user from the db using the provided id', async () => {
       await users.add({ username: 'gaffer', password: '1234' });
       const userFromDb = await users.findById(1);
+      expect(userFromDb.id).toEqual(1);
+    });
+  });
+  describe('findBy()', () => {
+    it('should get a user from the db using the provided property', async () => {
+      await users.add({ username: 'gaffer', password: '1234' });
+      const userFromDb = await users.findBy({ username: 'gaffer' });
       expect(userFromDb.id).toEqual(1);
     });
   });
